@@ -112,11 +112,12 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor *method,
         return;
     }
 
-    // 反序列化rpc调用的响应数据
-    std::string response_str(recv_buf, 0, recv_size);
-    if (!response->ParseFromString(response_str))
+    // 反序列化rpFc调用的响应数据
+    // std::string response_str(recv_buf, 0, recv_size);// FIXBUG recv_buf遇到\0后面数据就存不下来
+    // if (!response->ParseFromString(response_str))
+    if(!response->ParseFromArray(recv_buf,recv_size))
     {
-        std::cout << "parse error! response_str:" << response_str << std::endl;
+        std::cout << "parse error! recv_buf:" << recv_buf << std::endl;
         close(clientfd);
         return;
     }
