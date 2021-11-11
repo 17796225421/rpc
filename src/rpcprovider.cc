@@ -1,12 +1,36 @@
 #include "rpcprovider.h"
 #include "mprpcapplication.h"
 
-#include <string>
-#include <functional>
-
+/**
+ * service_name => service描述
+ *                          => service*服务对象
+ *                          method_name => method方法对象
+ * json protobuf
+*/
 // 框架提供给外部使用的，可以发布rpc方法的接口函数接口
 void RpcProvider::NotifyService(google::protobuf::Service *service)
 {
+    ServiceInfo service_info;
+    // 获取了服务对象的描述信息
+    const google::protobuf::ServiceDescriptor *pserviceDesc = service->GetDescriptor();
+    // 获取服务的名字
+    std::string service_name = pserviceDesc->name();
+    // 获取服务对象service的方法数量
+    int methodCnt = pserviceDesc->method_count();
+
+    std::cout << "service_name:" << service_name << std::endl;
+
+    for (int i = 0; i < methodCnt; ++i)
+    {
+        // 获取了服务对象指向下标的服务方法的描述(抽象描述)  UserService  Login
+        const google::protobuf::MethodDescriptor *pmethodDesc = pserviceDesc->method(i);
+        std::string method_name = pmethodDesc->name();
+        service_info.m_methodMap.insert({method_name, pmethodDesc});
+
+        std::cout << "method_name:" << method_name << std::endl;
+    }
+    service_info.m_service = service;
+    m_serviceMap.insert({service_name, service_info});
 }
 
 // 启动rpc服务节点，开始提供rpc远程网络调用服务
@@ -28,7 +52,7 @@ void RpcProvider::Run()
     // 设置muduo库的线程数量
     server.setThreadNum(4);
 
-    std::cout<<"RpcProvider start service at ip:"<<ip<<" port:"<<port<<std::endl; 
+    std::cout << "RpcProvider start service at ip:" << ip << " port:" << port << std::endl;
 
     // 启动网络服务
     server.start();
@@ -43,4 +67,4 @@ void RpcProvider::onConnection(const muduo::net::TcpConnectionPtr &conn)
 // 已建立连接用户的读写事件
 void RpcProvider::onMessage(const muduo::net::TcpConnectionPtr &, muduo::net::Buffer *, muduo::Timestamp)
 {
-} 
+}
