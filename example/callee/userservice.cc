@@ -56,6 +56,8 @@ int main(int argc,char **argv){
     RpcProvider provider;
     provider.NotifyService(new UserService());
 
-    // 执行回调操作，启动一个rpc服务发布节点
+    // 执行回调操作，启动一个rpc服务发布节点，Run以后，进程进入阻塞状态，等待远程rpc调用请求
     provider.Run();
+    
+    return 0;
 }
