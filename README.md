@@ -30,6 +30,29 @@
 
 ![image-20211110131700215](image/image-20211110131700215.png)
 
+# 安装zookeeper
+
+https://juejin.cn/post/6844903924172849166
+
+https://blog.csdn.net/weixin_43604792/article/details/103879578
+
+https://www.cnblogs.com/viviman/archive/2013/03/12/2955107.html
+
+
+
+```
+cd /usr/local/zookeeper/apache-zookeeper/bin
+./zkServer.sh  start
+./zkCli.sh 
+create /node1 100
+ls /
+get /node1
+delete /node1
+ls /
+```
+
+
+
 # 遇到的问题
 
 ## 虚拟机磁盘空间不足
@@ -39,3 +62,7 @@ https://www.cnblogs.com/ZHJ0125/p/12904471.html
 https://www.bilibili.com/s/video/BV1vv411e7kp
 
 https://www.codenong.com/cs106563971/
+
+## 共享库找不到error while loading shared libraries
+
+https://www.developzhe.com/single128.html
