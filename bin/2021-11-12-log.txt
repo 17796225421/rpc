@@ -1,0 +1,8 @@
+5:50:46 =>[info] first log message
+5:50:46 =>[info] /root/project/mprpc/example/callee/friendservice.cc:main:44
+5:50:46 =>[info] service_name:FriendServiceRpc
+5:50:46 =>[info] method_name:GetFriendsList
+5:56:15 =>[info] first log message
+5:56:15 =>[info] /root/project/mprpc/example/callee/friendservice.cc:main:44
+5:56:15 =>[info] service_name:FriendServiceRpc
+5:56:15 =>[info] method_name:GetFriendsList

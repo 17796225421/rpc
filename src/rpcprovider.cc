@@ -2,6 +2,7 @@
 #include "mprpcapplication.h"
 #include "rpcheader.pb.h"
 #include "logger.h"
+#include "zookeeperutil.h"
 
 /**
  * service_name => service描述
@@ -20,7 +21,7 @@ void RpcProvider::NotifyService(google::protobuf::Service *service)
     // 获取服务对象service的方法数量
     int methodCnt = pserviceDesc->method_count();
 
-    LOG_INFO("service_name:%s",service_name.c_str());
+    LOG_INFO("service_name:%s", service_name.c_str());
 
     for (int i = 0; i < methodCnt; ++i)
     {
@@ -29,7 +30,7 @@ void RpcProvider::NotifyService(google::protobuf::Service *service)
         std::string method_name = pmethodDesc->name();
         service_info.m_methodMap.insert({method_name, pmethodDesc});
 
-        LOG_INFO("method_name:%s",method_name.c_str());
+        LOG_INFO("method_name:%s", method_name.c_str());
     }
     service_info.m_service = service;
     m_serviceMap.insert({service_name, service_info});
@@ -54,6 +55,28 @@ void RpcProvider::Run()
     // 设置muduo库的线程数量
     server.setThreadNum(4);
 
+    // 把当前rpc节点上要发布的服务全部注册到zk上面，让rpc client可以从zk上发现服务
+    // session timeout  30s   zkclient 网络IO线程  1/3 timeout时间发送ping消息
+    ZkClient zkCli;
+    zkCli.Start();
+    // service_name为永久性节点，method_name为临时性节点
+    for (auto &sp : m_serviceMap)
+    {
+        // /service_name  /UserServiceRpc
+        std::string service_path = "/" + sp.first;
+        zkCli.Create(service_path.c_str(), nullptr, 0);
+        for (auto &mp : sp.second.m_methodMap)
+        {
+            // /service_name/method_name  /UserServiceRpc/Login，存储当前这个rpc服务节点主机的ip和port
+            std::string method_path = service_path + "/" + mp.first;
+            char method_path_data[128] = {0};
+            sprintf(method_path_data, "%s:%d", ip.c_str(), port);
+            // 表示ZOO_EPHEMERAL是一个临时性节点
+            zkCli.Create(method_path.c_str(), method_path_data, strlen(method_path_data), ZOO_EPHEMERAL);
+        }
+    }
+
+    // rpc服务端准备启动，打印信息
     std::cout << "RpcProvider start service at ip:" << ip << " port:" << port << std::endl;
 
     // 启动网络服务
