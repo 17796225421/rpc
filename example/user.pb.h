@@ -489,7 +489,7 @@ class LoginResponse :
 
   enum : int {
     kResultFieldNumber = 1,
-    kSuccessFieldNumber = 2,
+    kSucessFieldNumber = 2,
   };
   // .fixbug.ResultCode result = 1;
   bool has_result() const;
@@ -506,13 +506,13 @@ class LoginResponse :
   ::fixbug::ResultCode* _internal_mutable_result();
   public:
 
-  // bool success = 2;
-  void clear_success();
-  bool success() const;
-  void set_success(bool value);
+  // bool sucess = 2;
+  void clear_sucess();
+  bool sucess() const;
+  void set_sucess(bool value);
   private:
-  bool _internal_success() const;
-  void _internal_set_success(bool value);
+  bool _internal_sucess() const;
+  void _internal_set_sucess(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:fixbug.LoginResponse)
@@ -521,7 +521,7 @@ class LoginResponse :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::fixbug::ResultCode* result_;
-  bool success_;
+  bool sucess_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_user_2eproto;
 };
@@ -798,7 +798,7 @@ class RegisterResponse :
 
   enum : int {
     kResultFieldNumber = 1,
-    kSuccessFieldNumber = 2,
+    kSucessFieldNumber = 2,
   };
   // .fixbug.ResultCode result = 1;
   bool has_result() const;
@@ -815,13 +815,13 @@ class RegisterResponse :
   ::fixbug::ResultCode* _internal_mutable_result();
   public:
 
-  // bool success = 2;
-  void clear_success();
-  bool success() const;
-  void set_success(bool value);
+  // bool sucess = 2;
+  void clear_sucess();
+  bool sucess() const;
+  void set_sucess(bool value);
   private:
-  bool _internal_success() const;
-  void _internal_set_success(bool value);
+  bool _internal_sucess() const;
+  void _internal_set_sucess(bool value);
   public:
 
   // @@protoc_insertion_point(class_scope:fixbug.RegisterResponse)
@@ -830,7 +830,7 @@ class RegisterResponse :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::fixbug::ResultCode* result_;
-  bool success_;
+  bool sucess_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_user_2eproto;
 };
@@ -1180,24 +1180,24 @@ inline void LoginResponse::set_allocated_result(::fixbug::ResultCode* result) {
   // @@protoc_insertion_point(field_set_allocated:fixbug.LoginResponse.result)
 }
 
-// bool success = 2;
-inline void LoginResponse::clear_success() {
-  success_ = false;
+// bool sucess = 2;
+inline void LoginResponse::clear_sucess() {
+  sucess_ = false;
 }
-inline bool LoginResponse::_internal_success() const {
-  return success_;
+inline bool LoginResponse::_internal_sucess() const {
+  return sucess_;
 }
-inline bool LoginResponse::success() const {
-  // @@protoc_insertion_point(field_get:fixbug.LoginResponse.success)
-  return _internal_success();
+inline bool LoginResponse::sucess() const {
+  // @@protoc_insertion_point(field_get:fixbug.LoginResponse.sucess)
+  return _internal_sucess();
 }
-inline void LoginResponse::_internal_set_success(bool value) {
+inline void LoginResponse::_internal_set_sucess(bool value) {
   
-  success_ = value;
+  sucess_ = value;
 }
-inline void LoginResponse::set_success(bool value) {
-  _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:fixbug.LoginResponse.success)
+inline void LoginResponse::set_sucess(bool value) {
+  _internal_set_sucess(value);
+  // @@protoc_insertion_point(field_set:fixbug.LoginResponse.sucess)
 }
 
 // -------------------------------------------------------------------
@@ -1408,24 +1408,24 @@ inline void RegisterResponse::set_allocated_result(::fixbug::ResultCode* result)
   // @@protoc_insertion_point(field_set_allocated:fixbug.RegisterResponse.result)
 }
 
-// bool success = 2;
-inline void RegisterResponse::clear_success() {
-  success_ = false;
+// bool sucess = 2;
+inline void RegisterResponse::clear_sucess() {
+  sucess_ = false;
 }
-inline bool RegisterResponse::_internal_success() const {
-  return success_;
+inline bool RegisterResponse::_internal_sucess() const {
+  return sucess_;
 }
-inline bool RegisterResponse::success() const {
-  // @@protoc_insertion_point(field_get:fixbug.RegisterResponse.success)
-  return _internal_success();
+inline bool RegisterResponse::sucess() const {
+  // @@protoc_insertion_point(field_get:fixbug.RegisterResponse.sucess)
+  return _internal_sucess();
 }
-inline void RegisterResponse::_internal_set_success(bool value) {
+inline void RegisterResponse::_internal_set_sucess(bool value) {
   
-  success_ = value;
+  sucess_ = value;
 }
-inline void RegisterResponse::set_success(bool value) {
-  _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:fixbug.RegisterResponse.success)
+inline void RegisterResponse::set_sucess(bool value) {
+  _internal_set_sucess(value);
+  // @@protoc_insertion_point(field_set:fixbug.RegisterResponse.sucess)
 }
 
 #ifdef __GNUC__

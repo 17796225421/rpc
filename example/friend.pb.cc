@@ -115,10 +115,10 @@ const char descriptor_table_protodef_friend_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "errcode\030\001 \001(\005\022\016\n\006errmsg\030\002 \001(\014\"\'\n\025GetFrie"
   "ndsListRequest\022\016\n\006userid\030\001 \001(\r\"M\n\026GetFri"
   "endsListResponse\022\"\n\006result\030\001 \001(\0132\022.fixbu"
-  "g.ResultCode\022\017\n\007friends\030\002 \003(\0142c\n\020FriendS"
-  "erviceRpc\022O\n\016GetFriendsList\022\035.fixbug.Get"
-  "FriendsListRequest\032\036.fixbug.GetFriendsLi"
-  "stResponseB\003\200\001\001b\006proto3"
+  "g.ResultCode\022\017\n\007friends\030\002 \003(\0142b\n\017FiendSe"
+  "rviceRpc\022O\n\016GetFriendsList\022\035.fixbug.GetF"
+  "riendsListRequest\032\036.fixbug.GetFriendsLis"
+  "tResponseB\003\200\001\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_friend_2eproto_deps[1] = {
 };
@@ -130,7 +130,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_fri
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_friend_2eproto_once;
 static bool descriptor_table_friend_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_friend_2eproto = {
-  &descriptor_table_friend_2eproto_initialized, descriptor_table_protodef_friend_2eproto, "friend.proto", 303,
+  &descriptor_table_friend_2eproto_initialized, descriptor_table_protodef_friend_2eproto, "friend.proto", 302,
   &descriptor_table_friend_2eproto_once, descriptor_table_friend_2eproto_sccs, descriptor_table_friend_2eproto_deps, 3, 0,
   schemas, file_default_instances, TableStruct_friend_2eproto::offsets,
   file_level_metadata_friend_2eproto, 3, file_level_enum_descriptors_friend_2eproto, file_level_service_descriptors_friend_2eproto,
@@ -784,18 +784,18 @@ void GetFriendsListResponse::InternalSwap(GetFriendsListResponse* other) {
 
 // ===================================================================
 
-FriendServiceRpc::~FriendServiceRpc() {}
+FiendServiceRpc::~FiendServiceRpc() {}
 
-const ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor* FriendServiceRpc::descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor* FiendServiceRpc::descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_friend_2eproto);
   return file_level_service_descriptors_friend_2eproto[0];
 }
 
-const ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor* FriendServiceRpc::GetDescriptor() {
+const ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor* FiendServiceRpc::GetDescriptor() {
   return descriptor();
 }
 
-void FriendServiceRpc::GetFriendsList(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
+void FiendServiceRpc::GetFriendsList(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
                          const ::fixbug::GetFriendsListRequest*,
                          ::fixbug::GetFriendsListResponse*,
                          ::google::protobuf::Closure* done) {
@@ -803,7 +803,7 @@ void FriendServiceRpc::GetFriendsList(::PROTOBUF_NAMESPACE_ID::RpcController* co
   done->Run();
 }
 
-void FriendServiceRpc::CallMethod(const ::PROTOBUF_NAMESPACE_ID::MethodDescriptor* method,
+void FiendServiceRpc::CallMethod(const ::PROTOBUF_NAMESPACE_ID::MethodDescriptor* method,
                              ::PROTOBUF_NAMESPACE_ID::RpcController* controller,
                              const ::PROTOBUF_NAMESPACE_ID::Message* request,
                              ::PROTOBUF_NAMESPACE_ID::Message* response,
@@ -824,7 +824,7 @@ void FriendServiceRpc::CallMethod(const ::PROTOBUF_NAMESPACE_ID::MethodDescripto
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message& FriendServiceRpc::GetRequestPrototype(
+const ::PROTOBUF_NAMESPACE_ID::Message& FiendServiceRpc::GetRequestPrototype(
     const ::PROTOBUF_NAMESPACE_ID::MethodDescriptor* method) const {
   GOOGLE_DCHECK_EQ(method->service(), descriptor());
   switch(method->index()) {
@@ -837,7 +837,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message& FriendServiceRpc::GetRequestPrototype(
   }
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message& FriendServiceRpc::GetResponsePrototype(
+const ::PROTOBUF_NAMESPACE_ID::Message& FiendServiceRpc::GetResponsePrototype(
     const ::PROTOBUF_NAMESPACE_ID::MethodDescriptor* method) const {
   GOOGLE_DCHECK_EQ(method->service(), descriptor());
   switch(method->index()) {
@@ -850,18 +850,18 @@ const ::PROTOBUF_NAMESPACE_ID::Message& FriendServiceRpc::GetResponsePrototype(
   }
 }
 
-FriendServiceRpc_Stub::FriendServiceRpc_Stub(::PROTOBUF_NAMESPACE_ID::RpcChannel* channel)
+FiendServiceRpc_Stub::FiendServiceRpc_Stub(::PROTOBUF_NAMESPACE_ID::RpcChannel* channel)
   : channel_(channel), owns_channel_(false) {}
-FriendServiceRpc_Stub::FriendServiceRpc_Stub(
+FiendServiceRpc_Stub::FiendServiceRpc_Stub(
     ::PROTOBUF_NAMESPACE_ID::RpcChannel* channel,
     ::PROTOBUF_NAMESPACE_ID::Service::ChannelOwnership ownership)
   : channel_(channel),
     owns_channel_(ownership == ::PROTOBUF_NAMESPACE_ID::Service::STUB_OWNS_CHANNEL) {}
-FriendServiceRpc_Stub::~FriendServiceRpc_Stub() {
+FiendServiceRpc_Stub::~FiendServiceRpc_Stub() {
   if (owns_channel_) delete channel_;
 }
 
-void FriendServiceRpc_Stub::GetFriendsList(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
+void FiendServiceRpc_Stub::GetFriendsList(::PROTOBUF_NAMESPACE_ID::RpcController* controller,
                               const ::fixbug::GetFriendsListRequest* request,
                               ::fixbug::GetFriendsListResponse* response,
                               ::google::protobuf::Closure* done) {
