@@ -40,9 +40,6 @@ public:
 
 int main(int argc, char **argv)
 {
-    LOG_ERR("ddddd");
-    LOG_INFO("ddddd");
-
     // 调用框架的初始化操作
     RpcApplication::Init(argc, argv);
 

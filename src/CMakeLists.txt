@@ -9,4 +9,4 @@ set(SRC_LIST
     logger.cc
     zookeeperutil.cc)
 add_library(rpc ${SRC_LIST})
-target_link_libraries(rpc muduo_net muduo_base pthread zookeeper_mt)
+target_link_libraries(rpc netlibrary pthread zookeeper_mt)

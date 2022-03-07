@@ -26,7 +26,7 @@ public:
 
     /*
     重写基类UserServiceRpc的虚函数 下面这些方法都是框架直接调用的
-    1. caller   ===>   Login(LoginRequest)  => muduo =>   callee 
+    1. caller   ===>   Login(LoginRequest)  => netlibrary =>   callee 
     2. callee   ===>    Login(LoginRequest)  => 交到下面重写的这个Login方法上了
     */
     void Login(::google::protobuf::RpcController* controller,

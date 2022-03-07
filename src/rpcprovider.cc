@@ -44,17 +44,17 @@ void RpcProvider::Run()
     // 读取配置文件rpcserver的信息
     std::string ip = RpcApplication::GetInstance().GetConfig().Load("rpcserverip");
     uint16_t port = atoi(RpcApplication::GetInstance().GetConfig().Load("rpcserverport").c_str());
-    muduo::net::InetAddress address(ip, port);
+    InetAddress address(port, ip);
 
     // 创建TcpServer对象
-    muduo::net::TcpServer server(&m_eventLoop, address, "RpcProvider");
+    TcpServer server(&m_eventLoop, address, "RpcProvider");
 
     // 绑定连接回调和消息读写回调方法  分离了网络代码和业务代码
     server.setConnectionCallback(std::bind(&RpcProvider::OnConnection, this, std::placeholders::_1));
     server.setMessageCallback(std::bind(&RpcProvider::OnMessage, this, std::placeholders::_1, 
             std::placeholders::_2, std::placeholders::_3));
 
-    // 设置muduo库的线程数量
+    // 设置netlibrary库的线程数量
     server.setThreadNum(4);
 
     // 把当前rpc节点上要发布的服务全部注册到zk上面，让rpc client可以从zk上发现服务
@@ -87,7 +87,7 @@ void RpcProvider::Run()
 }
 
 // 新的socket连接回调
-void RpcProvider::OnConnection(const muduo::net::TcpConnectionPtr &conn)
+void RpcProvider::OnConnection(const TcpConnectionPtr &conn)
 {
     if (!conn->connected())
     {
@@ -108,9 +108,9 @@ header_size(4个字节) + header_str + args_str
 std::string   insert和copy方法 
 */
 // 已建立连接用户的读写事件回调 如果远程有一个rpc服务的调用请求，那么OnMessage方法就会响应
-void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn, 
-                            muduo::net::Buffer *buffer, 
-                            muduo::Timestamp)
+void RpcProvider::OnMessage(const TcpConnectionPtr &conn, 
+                            Buffer *buffer, 
+                            Timestamp)
 {
     // 网络上接收的远程rpc调用请求的字符流    Login args
     std::string recv_buf = buffer->retrieveAllAsString();
@@ -180,7 +180,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn,
 
     // 给下面的method方法的调用，绑定一个Closure的回调函数
     google::protobuf::Closure *done = google::protobuf::NewCallback<RpcProvider, 
-                                                                    const muduo::net::TcpConnectionPtr&, 
+                                                                    const TcpConnectionPtr&, 
                                                                     google::protobuf::Message*>
                                                                     (this, 
                                                                     &RpcProvider::SendRpcResponse, 
@@ -192,7 +192,7 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn,
 }
 
 // Closure的回调操作，用于序列化rpc的响应和网络发送
-void RpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr& conn, google::protobuf::Message *response)
+void RpcProvider::SendRpcResponse(const TcpConnectionPtr& conn, google::protobuf::Message *response)
 {
     std::string response_str;
     if (response->SerializeToString(&response_str)) // response进行序列化
